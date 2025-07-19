@@ -5,6 +5,8 @@
 <header class="masthead no-margin-bottom" style="background-color: #fff">
     <div class="overlay"></div>
     <div class="container">
+
+
         <!--内容-->
         <div class="row">
             <div class="col-lg-12 col-md-12 mx-auto detail-body">
@@ -387,6 +389,185 @@
         };
 
         houeTypeOption && houeTypecharts.setOption(houeTypeOption);
+        //小区房源数量TOP20
+        let communityHouseCountDom = document.getElementById("scolumn_line");
+        let communityHouseCountcharts = echarts.init(communityHouseCountDom);
+        let communityHouseCountOption = {
+            grid: {
+                top: 20,
+                right: 20,
+                left: 50,
+                bottom: 40
+            },
+            xAxis: {
+                type: 'category',
+                data: [
+                    '1',
+                    '2',
+                    '3',
+                    '4',
+                    '5',
+                    '6',
+                    '7',
+                    '8',
+                    '9',
+                    '10',
+                    '11',
+                    '12',
+                    '13',
+                    '14',
+                    '15',
+                    '16',
+                    '17',
+                    '18',
+                    '19',
+                    '20'
+                ],
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#333'
+                    }
+                },
+                axisTick: {
+                    show: false // 不显示刻度线
+                },
+                splitLine: {
+                    show: false // 不显示网格线
+                }
+            },
+            yAxis: {
+                type: 'value',
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#333'
+                    }
+                },
+                axisTick: {
+                    show: false // 不显示刻度线
+                },
+                splitLine: {
+                    show: false // 不显示网格线
+                }
+            },
+            series: [
+                {
+                    data: [
+                        120, 200, 150, 80, 70, 110, 130, 10, 20, 157, 95, 28, 352, 481, 120,
+                        125, 205, 58, 91, 543
+                    ],
+                    type: 'bar',
+                    itemStyle: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                            { offset: 0, color: '#83bff6' },
+                            { offset: 1, color: '#188df0' }
+                        ])
+                    },
+                    label: {
+                        show: true,
+                        position: 'top',
+                        color: '#333',
+                        fontWeight: 'bold'
+                    }
+                }
+            ]
+        };
+
+        communityHouseCountOption && communityHouseCountcharts.setOption(communityHouseCountOption);
+
+        let houseTypePriceDom = document.getElementById("broken_line");
+        let houseTypePricecharts = echarts.init(houseTypePriceDom);
+        let houseTypePriceOption = {
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['Email', 'Union Ads', 'Video Ads', 'Direct']
+            },
+            grid: {
+                left: 50, // 留出y轴标题空间
+                right: 20,
+                bottom: 40,
+                top: 40
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                axisLine: {
+                    show: true,
+                    lineStyle: { color: '#333' }
+                },
+                axisTick: { show: true }, // 显示刻度线
+                splitLine: { show: false } // 不显示竖网格线
+            },
+            yAxis: {
+                type: 'value',
+                name: '数量', // 这里是y轴的小标题
+                nameLocation: 'middle', // 可选：middle, end, start
+                nameGap: 35, // 距离轴的距离
+                axisLine: {
+                    show: true,
+                    lineStyle: { color: '#333' }
+                },
+                axisTick: { show: true }, // 显示刻度线
+                splitLine: { show: false } // 不显示横网格线
+            },
+            series: [
+                {
+                    name: 'Email',
+                    type: 'line',
+                    stack: 'Total',
+                    symbol: 'circle',
+                    symbolSize: 8,
+                    itemStyle: {
+                        borderWidth: 0 // 实心
+                    },
+                    data: [120, 132, 101, 134, 90, 230, 210]
+                },
+                {
+                    name: 'Union Ads',
+                    type: 'line',
+                    stack: 'Total',
+                    symbol: 'circle',
+                    symbolSize: 8,
+                    itemStyle: {
+                        borderWidth: 0
+                    },
+                    data: [220, 182, 191, 234, 290, 330, 310]
+                },
+                {
+                    name: 'Video Ads',
+                    type: 'line',
+                    stack: 'Total',
+                    symbol: 'circle',
+                    symbolSize: 8,
+                    itemStyle: {
+                        borderWidth: 0
+                    },
+                    data: [150, 232, 201, 154, 190, 330, 410]
+                },
+                {
+                    name: 'Direct',
+                    type: 'line',
+                    stack: 'Total',
+                    symbol: 'circle',
+                    symbolSize: 8,
+                    itemStyle: {
+                        borderWidth: 0
+                    },
+                    data: [320, 332, 301, 334, 390, 330, 320]
+                }
+            ]
+        };
+
+houseTypePriceOption && houseTypePricecharts.setOption(houseTypePriceOption);
     })
 </script>
 {% endblock %}
