@@ -1,0 +1,21 @@
+在数据库中输入以下语句，以为house_info添加图片路径：
+
+-- 切换到指定数据库
+USE house;  -- 这里的 "house" 替换成你自己的数据库名称
+
+ALTER TABLE house_info ADD COLUMN image_path VARCHAR(255);
+SET SQL_SAFE_UPDATES = 0;
+UPDATE house_info
+SET image_path = CONCAT('house_image/',
+  CASE MOD(id, 3)
+    WHEN 0 THEN 'house-bg2.jpeg'
+    WHEN 1 THEN 'house-gb.jpg'
+    WHEN 2 THEN 'house-bg1.jpg'
+  END);
+
+SET SQL_SAFE_UPDATES = 1;
+
+
+然后一定要在config.py中修改连接数据库语句：
+在文件中的第21行中修改os.getenv('DB_USER', 'root')中的'root'为你自己的数据库用户名，以及os.getenv('DB_PASSWORD', '123456')中的'123456'为你自己的数据库密码。
+直接修改.env中的变量值是没有用的,因为老师的连接数据库语句似乎有问题。
